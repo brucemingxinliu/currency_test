@@ -1,4 +1,4 @@
-This is a ros_service and ros_client pair using service messages and ros as API for communication. 
+This is a ros_service and ros_client pair using service messages and ros as API for communication written in C++.
 
 The algorithm set up for the task is simple.
 
