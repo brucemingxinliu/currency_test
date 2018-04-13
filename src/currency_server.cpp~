@@ -1,0 +1,73 @@
+// Mingxin Liu (Bruce)
+
+
+
+#include<ros/ros.h>
+#include<iostream>
+#include<string>
+
+using namespace std;
+
+int days = 0;
+double price = 0;
+double price1 = 0.05;
+double price2 = 0.10;
+double price3 = 0.15;
+double price4 = 0.20;
+int date = 0000; //initializing the date for month and date.
+int jan = 31;
+int feb = 27;
+int mar = 31;
+int apl = 30;
+int may = 31;
+int jun = 30;
+int jul = 31;
+
+char* months[] = {"jan", "feb", "mar"}; //unfinished....
+
+
+
+
+while(days<=30){
+    
+     string month(request.month);
+     for(int i = 0; i < 2; i++){ // iteration for i also needs to change to 12 month
+	if(month.compare(months[i] == 0)){
+           ROS_INFO(i,"is the month");
+         }
+
+     }
+
+
+
+     days = request.days; // api getting the user requests through a service message
+
+     if(days<=7){
+	price = price1;
+
+
+
+
+     }
+
+
+     if(7<=days && days<= 14){
+	price = price2;
+
+
+     }
+
+     if(14<=days && days<= 28){
+	price = price3;
+
+
+     }
+     if(28<=days && days<= 30){
+	price = price4;
+
+
+     }
+
+
+days = days + 1;
+}
