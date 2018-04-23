@@ -6,9 +6,9 @@ First from the date given by the user, I check which month it is and find the co
 
 The dynamic pricing is changed every week, and the user only purchases on the week days. Therefore, to find the cost, I use the current price times the days he purchases in that week then add the cost from the last week. This interation ends in the end of the month, and when iterate to the next month, I then set the whichmonth to one when the iteration is over. 
 
+The question was done in both C++ and JavaScript.
 
 question:
-Take up to 4 hours to attempt the following coding challenge (honor system as we understand you may not be able to immediately start when you receive this email):
 
     Design and build a microservice (no need for UI or DB storage) that contains one REST API endpoint. This endpoint should:
         Receive requests containing the following inputs: startDate (in the format of MM/DD/YYYY) and numberOfDays.
