@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8" />
+<title>bananabudget</title>
+
+<h2>
+Here is a microservice program that calculates your budget for bananas with dynamic pricing
+</h2>
+<script>
+//Initializing the web page.
+window.onload = function () {
+var pE,mdy;
+  //document.querySelector('#btLookCode').addEventListener('click', DoLookCode, true);
+  //      document.querySelector('#btFindPass').addEventListener('click', DoFindPass, true);
+  //Initializing the number of days
+  pE = document.querySelector('#Days');
+  pE.value = 1;
+  //Initializing the starting date
+  pE = document.querySelector('#StartDate');
+  mdy = new Date();
+  pE.value = mdy.toLocaleDateString();//initialize to the local date from your time zone
+  setBudget();
+  pE = document.querySelector('#btBudget');
+  pE.addEventListener('click', setBudget, true);
+}
+function setBudget() {
+//Calcualting the budget
+    var pE, pDate, pDays, pBudget;
+    pBudget = document.querySelector('#Budget');
+    pE = document.querySelector('#StartDate');
+    pDate = Date.parse(pE.value);
+    if (isNaN(pDate)) {//checks if the input has invalid values.
+      pBudget.value = 'Wrong input format, please try again.';
+      return;
+    }
+    pDate = new Date(pDate);
+    pE = document.querySelector('#Days');
+    pDays = parseInt(pE.value);
+    if (isNaN(pDays)) {//checks if the input days are invalid to read for example: -1 or string.
+      pBudget.value = 'Invalid number for days, please try again.';
+      return;
+    }
+    pBudget.value = BananaBudget(pDate, pDays); 
+}
+
+function BananaBudget(StartDate, Days) {
+  var totalcost, ADate, AWeek;
+  totalcost = 0;
+  while (Days > 0) {
+    AWeek = StartDate.getDay();  //getting which day of the week. 0 is sunday and so on.
+    ADate = StartDate.getDate(); //Getting the date of the month
+    if ((AWeek >= 1) && (AWeek <= 5)) { //here is the logic part. checking the totalcost at the dynamic pricing
+      if (ADate <= 7)
+        totalcost += .05;
+      else if (ADate <= 14)
+        totalcost += .1;
+      else if (ADate <= 21)
+        totalcost += .15;
+      else if (ADate <= 28)
+        totalcost += .2;
+      else
+        totalcost += .25;
+    }
+    Days--;
+    StartDate.setDate(ADate + 1);
+  }  //end while
+  return totalcost;
+}
+</script>
+</head>
+<body>
+<label for="StartDate">startdate：</label>
+<input type="text" id="StartDate" tabindex="1"/><br/>
+<label for="Days">numberofdays：</label>
+<input type="text" id="Days" tabindex="2"/><br/>
+<button id="btBudget" tabindex="3">CalculateYourTotalCost</button><br/>
+<label for="Budget">totalcost：</label>
+<input type="text" id="Budget" name="Budget" value="" readonly ="readonly" />
+</form>
+</body>
+</html>
